@@ -1,0 +1,14 @@
+#ajd {
+    -fx-text-fill: #ff0000;
+}
+
+.scroll-pane {
+    -fx-background: #e1f2ff;
+    -fx-border-color: #000000;
+    -fx-text-alignment: center;
+    -fx-padding: 5px;
+}
+
+.root {
+    -fx-background-color: #95bfff;
+}
