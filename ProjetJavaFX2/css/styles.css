@@ -12,3 +12,16 @@
 .root {
     -fx-background-color: #95bfff;
 }
+
+#opaque {
+    -fx-background-color: white;
+}
+
+.toggle-button {
+    -fx-background-color: white;
+    -fx-padding: 1.2em
+}
+
+.toggle-button:selected {
+    -fx-background-color: gainsboro;
+}

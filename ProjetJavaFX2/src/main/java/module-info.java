@@ -1,12 +1,11 @@
-module com.example.projetjavafx2 {
+module com.example {
     requires javafx.controls;
     requires javafx.fxml;
 
     requires org.controlsfx.controls;
     requires jdk.compiler;
+    requires java.desktop;
 
-    opens com.example.projetjavafx2 to javafx.fxml;
-    exports com.example.projetjavafx2;
-    exports vue;
-    exports modele;
+    exports com.example.vue;
+    exports com.example.modele;
 }
