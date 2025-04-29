@@ -10,11 +10,12 @@
 }
 
 .root {
-    -fx-background-color: #95bfff;
+    -fx-background-color: #e6f0ff;
 }
 
 #opaque {
     -fx-background-color: white;
+    /* -fx-opacity: 50%; */
 }
 
 .toggle-button {

@@ -11,9 +11,9 @@ public class DeuxiemeApplication extends Application {
     public void start(Stage stage) {
 
         File css = new File("css" + File.separator+"styles.css");
-        TilePaneTD3 root = new TilePaneTD3();
+        HBoxRoot root = new HBoxRoot();
 
-        Scene scene = new Scene(root, 300, 400);
+        Scene scene = new Scene(root, 800, 400);
         stage.setScene(scene);
         stage.setTitle("Calendrier sous ScrollPane");
         scene.getStylesheets().add(css.toURI().toString());
