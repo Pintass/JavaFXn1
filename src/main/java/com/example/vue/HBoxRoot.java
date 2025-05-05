@@ -1,18 +1,18 @@
 package com.example.vue;
 
 import com.example.controleur.Controleur;
-import com.example.modele.Planning;
+import com.example.modele.PlanningCollections;
 import javafx.scene.layout.HBox;
 
 public class HBoxRoot extends HBox {
-    private static Planning planning;
+    private static PlanningCollections planning;
     private static Controleur controleur;
     private static TilePaneTD3 calendrierPane;
     private static Formulaire formulairePane;
 
     public HBoxRoot() {
         super(20);
-        planning = new Planning();
+        planning = new PlanningCollections();
         controleur = new Controleur();
         calendrierPane = new TilePaneTD3();
         formulairePane = new Formulaire();
@@ -21,7 +21,7 @@ public class HBoxRoot extends HBox {
 
     }
 
-    public static Planning getPlanning() {
+    public static PlanningCollections getPlanning() {
         return planning;
     }
 
