@@ -19,13 +19,14 @@ public class Controleur implements EventHandler {
         if (event.getSource() instanceof ToggleButton) {
             ToggleButton clickedButton = (ToggleButton)event.getSource();
             DateCalendrier selDate = (DateCalendrier)clickedButton.getUserData();
-            System.out.println(clickedButton.getUserData() + "ds contr");
+
+            reservationPane.updateDateSel(selDate);
         }
 
         // la source de event est le bouton "Enregistrer" du formulaire de réservation
         if (event.getSource() instanceof Button) {
             Button clickedButton = (Button)event.getSource();
-            System.out.println(clickedButton);
+            String sCours = reservationPane.getTextFieldCours();
         }
     }
 }
