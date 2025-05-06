@@ -1,5 +1,6 @@
 package com.example.vue;
 
+import com.example.controleur.Controleur;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -11,8 +12,8 @@ public class DeuxiemeApplication extends Application {
     public void start(Stage stage) {
 
         File css = new File("css" + File.separator+"styles.css");
-        HBoxRoot root = new HBoxRoot();
 
+        HBoxRoot root = new HBoxRoot();
         Scene scene = new Scene(root, 800, 400);
         stage.setScene(scene);
         stage.setTitle("Daniel Rodrigues Amorim");

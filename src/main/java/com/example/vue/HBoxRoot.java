@@ -7,15 +7,15 @@ import javafx.scene.layout.HBox;
 public class HBoxRoot extends HBox {
     private static PlanningCollections planning;
     private static Controleur controleur;
-    private static TilePaneTD3 calendrierPane;
+    private static GridPane calendrierPane;
     private static Formulaire formulairePane;
 
     public HBoxRoot() {
         super(20);
         planning = new PlanningCollections();
         controleur = new Controleur();
-        calendrierPane = new TilePaneTD3();
-        formulairePane = new Formulaire();
+        calendrierPane = new GridPane(controleur);
+        formulairePane = new Formulaire(controleur);
         this.getChildren().add(calendrierPane);
         this.getChildren().add(formulairePane);
 
@@ -29,7 +29,7 @@ public class HBoxRoot extends HBox {
         return controleur;
     }
 
-    public static TilePaneTD3 getCalendrierPane() {
+    public static GridPane getCalendrierPane() {
         return calendrierPane;
     }
 

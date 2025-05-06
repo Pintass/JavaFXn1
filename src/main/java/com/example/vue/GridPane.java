@@ -1,5 +1,6 @@
 package com.example.vue;
 
+import com.example.controleur.Controleur;
 import com.example.modele.CalendrierDuMois;
 import com.example.modele.ConstantesCalendrier;
 import com.example.modele.DateCalendrier;
@@ -18,7 +19,7 @@ import javafx.scene.layout.VBox;
 import java.util.List;
 
 public class GridPane extends VBox implements ConstantesCalendrier {
-    public GridPane() {
+    public GridPane(Controleur controleur) {
         super();
         DateCalendrier today = new DateCalendrier();
         StackPane stackPaneMois = new StackPane();
@@ -52,12 +53,17 @@ public class GridPane extends VBox implements ConstantesCalendrier {
                 tilePane.getChildren().add(boutonDate);
 
                 boutonDate.setUserData(date);
-                boutonDate.setOnAction(new EventHandler<ActionEvent>() {
+                /*boutonDate.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent actionEvent) {
-                        boutonDate.setId("toggle-button");
+                        boutonDate.addEventHandler(ActionEvent.ACTION, controleur);
+
+// Ne sert à rien dans la vue, addEventHandler appele déjà la méthode en commentaire
                     }
-                });
+                });*/
+
+                boutonDate.addEventHandler(ActionEvent.ACTION, controleur);
+
                 if(date.getMois() != mois.getMois()) {
                     boutonDate.setId("dateHorsMois");
                 }

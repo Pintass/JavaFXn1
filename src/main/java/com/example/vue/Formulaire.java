@@ -1,6 +1,8 @@
 package com.example.vue;
+import com.example.controleur.Controleur;
 import com.example.modele.DateCalendrier;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -8,7 +10,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 
 public class Formulaire extends GridPane {
-    public Formulaire() {
+    public Formulaire(Controleur controleur) {
         super();
         DateCalendrier today = new DateCalendrier();
         GridPane grid = new GridPane();
@@ -38,8 +40,6 @@ public class Formulaire extends GridPane {
         grid.add(labelCours, 0, 1);
         grid.add(textFieldCours, 1, 1);
         GridPane.setColumnSpan(textFieldCours, 5);
-
-
 
 
         // Radio boutons
@@ -140,6 +140,7 @@ public class Formulaire extends GridPane {
 
 
         Button enregistrerButton = new Button("En_registrer");
+        enregistrerButton.addEventHandler(ActionEvent.ACTION, controleur);
         grid.add(enregistrerButton, 5, 6);
         enregistrerButton.setMnemonicParsing(true);
         GridPane.setHalignment(enregistrerButton, HPos.RIGHT);
