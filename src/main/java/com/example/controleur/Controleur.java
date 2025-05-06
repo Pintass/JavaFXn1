@@ -1,7 +1,6 @@
 package com.example.controleur;
 
-import com.example.modele.DateCalendrier;
-import com.example.modele.PlanningCollections;
+import com.example.modele.*;
 import com.example.vue.Formulaire;
 import com.example.vue.HBoxRoot;
 import javafx.event.Event;
@@ -27,6 +26,23 @@ public class Controleur implements EventHandler {
         if (event.getSource() instanceof Button) {
             Button clickedButton = (Button)event.getSource();
             String sCours = reservationPane.getTextFieldCours();
+// =======
+            // on récupère les informations des horaires afin de créer les horaires dans ce controleur
+            Integer iHeureDebut = reservationPane.getHeureDebut();
+            Integer iMinDebut = reservationPane.getHeureMinDebut();
+            Integer iHeureFin = reservationPane.getHeureFin();
+            Integer iMinFin = reservationPane.getMinHeureFin();
+            // On crée les horaires désormais :
+            Horaire hHoraireDebut = new Horaire(iHeureDebut, iMinDebut);
+            Horaire hHoraireFin = new Horaire(iHeureFin, iMinFin);
+            // Puis la plage horaire de la réservation, on mets un try catch car il peut y avoir une réservation
+            try {
+                PlageHoraire phPlageHoraireReservation = new PlageHoraire(hHoraireDebut, hHoraireFin);
+            } catch (ExceptionPlanning e) {
+                throw new RuntimeException(e);
+            }
+
+
         }
     }
 }

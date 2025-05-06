@@ -168,5 +168,19 @@ public class Formulaire extends GridPane {
         return textFieldCours.getText();
     }
 
-    public Horaire getHeureDebut() {}
+    public Integer getHeureDebut() {
+        return heureDebut.getValue();
+    }
+
+    public Integer getHeureMinDebut() {
+        return minHeureDebut.getValue();
+    }
+
+    public Integer getHeureFin() {
+        return heureFin.getValue();
+    }
+
+    public Integer getMinHeureFin(){
+        return minHeureFin.getValue();
+    }
 }
