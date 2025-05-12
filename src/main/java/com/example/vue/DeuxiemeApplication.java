@@ -14,7 +14,7 @@ public class DeuxiemeApplication extends Application {
         File css = new File("css" + File.separator+"styles.css");
 
         HBoxRoot root = new HBoxRoot();
-        Scene scene = new Scene(root, 800, 400);
+        Scene scene = new Scene(root, 1200, 600);
         stage.setScene(scene);
         stage.setTitle("Daniel Rodrigues Amorim");
         scene.getStylesheets().add(css.toURI().toString());

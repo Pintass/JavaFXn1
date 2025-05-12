@@ -76,6 +76,9 @@ public class GridPane extends VBox implements ConstantesCalendrier {
 
             tilePane.setAccessibleText(MOIS[i-1]);
             stackPaneMois.getChildren().add(tilePane);
+
+            Label labelMois = new Label(MOIS[i-1]);
+
         }
 
         this.getChildren().add(stackPaneMois);

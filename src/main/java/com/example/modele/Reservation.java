@@ -1,11 +1,11 @@
 package com.example.modele;
 
-public class Reservation {
-    private Date dateReservation;
+public class Reservation implements Comparable<Reservation>{
+    private DateCalendrier dateReservation;
     private PlageHoraire plageHoraireReservation;
     private String chIntituleReservation;
 
-    public Reservation (Date parDate, PlageHoraire parPlageHoraire, String parIntitule) throws ExceptionPlanning {
+    public Reservation (DateCalendrier parDate, PlageHoraire parPlageHoraire, String parIntitule) throws ExceptionPlanning {
         if (parIntitule == null) throw new ExceptionPlanning(5);
 
         dateReservation = parDate;
@@ -17,16 +17,11 @@ public class Reservation {
         return "Réservation " + chIntituleReservation + " le : " + dateReservation + " de " + plageHoraireReservation;
     }
 
+    @Override
     public int compareTo(Reservation parReservation) {
-        switch (parReservation.dateReservation.compareTo(dateReservation)) {
-            case 0:
+       if (parReservation.dateReservation.compareTo(dateReservation) == 0)
                 return parReservation.plageHoraireReservation.compareTo(plageHoraireReservation);
-            case -1:
-                return -1;
-            case 1:
-                return 1;
-        }
-        return 0;
+       return parReservation.dateReservation.compareTo(dateReservation);
     }
 
     public Date getDate() {

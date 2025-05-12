@@ -1,28 +1,138 @@
-#ajd {
-    -fx-text-fill: #ff0000;
-}
-
-.scroll-pane {
-    -fx-background: #e1f2ff;
-    -fx-border-color: #000000;
-    -fx-text-alignment: center;
-    -fx-padding: 5px;
-}
-
+/* Style général */
 .root {
-    -fx-background-color: #e6f0ff;
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-background-color: #f8f9fa;
+    -fx-padding: 20;
 }
+
+/* HBox contenant le calendrier et le formulaire */
+.hbox {
+    -fx-spacing: 40;
+}
+
+/* ================================
+   STYLES POUR LE CALENDRIER
+   ================================ */
 
 #opaque {
     -fx-background-color: white;
-    /* -fx-opacity: 50%; */
+    -fx-padding: 20;
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+    -fx-border-color: #ddd;
+    -fx-border-width: 1;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 6, 0, 0, 2);
 }
 
-.toggle-button {
+/* Cases de jours (labels ou toggle buttons) */
+#opaque > .label,
+#opaque > .toggle-button {
+    -fx-pref-width: 60px;
+    -fx-pref-height: 60px;
+    -fx-font-size: 16px;
+    -fx-alignment: center;
+}
+
+/* Dates qui ne font pas partie du mois courant */
+#dateHorsMois {
+    -fx-opacity: 0.3;
+}
+
+/* Boutons de navigation (<< < > >>) */
+.button {
+    -fx-background-color: #007bff;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+    -fx-padding: 8 14;
+}
+
+.button:hover {
+    -fx-background-color: #0056b3;
+}
+
+/* Case représentant aujourd’hui */
+#ajd {
+    -fx-background-color: #ffdd57;
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6;
+}
+
+/* ================================
+   STYLES POUR LE FORMULAIRE
+   ================================ */
+
+.grid-pane {
     -fx-background-color: white;
-    -fx-padding: 1.2em
+    -fx-padding: 30;
+    -fx-hgap: 15;
+    -fx-vgap: 15;
+    -fx-font-size: 14px;
 }
 
-.toggle-button:selected {
-    -fx-background-color: gainsboro;
+.label {
+    -fx-font-weight: bold;
+}
+
+/* Champs texte et listes déroulantes */
+.text-field, .combo-box, .combo-box-base {
+    -fx-pref-width: 200px;
+    -fx-background-color: #f1f3f5;
+    -fx-background-radius: 6;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 6;
+    -fx-padding: 6 10;
+}
+
+/* Boutons principaux */
+.button#annuler {
+    -fx-background-color: #9e0000;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6;
+    -fx-pref-width: 100px;
+}
+
+.button#enregistrer {
+    -fx-background-color: #28a745;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6;
+    -fx-pref-width: 120px;
+}
+
+.button#enregistrer:hover {
+    -fx-background-color: #218838;
+    -fx-effect: dropshadow( gaussian , #2cff00, 20, 0.01,0,0 );
+}
+
+.button#annuler:hover {
+    -fx-background-color: #ced4da;
+}
+
+/* Radio buttons */
+.radio-button .radio {
+    -fx-padding: 0 5 0 0;
+}
+
+.radio-button {
+    -fx-font-size: 14px;
+}
+
+/* ================================
+   AJUSTEMENTS GÉNÉRAUX
+   ================================ */
+
+.centered {
+    -fx-alignment: center;
+}
+
+#sMessageConfirmation {
+    -fx-text-fill: #5c0000;
+    -fx-font-family: Montserrat;
+    -fx-font-weight: 800;
+    -fx-font-size: 24px;
 }

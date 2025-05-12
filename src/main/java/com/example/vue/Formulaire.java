@@ -1,7 +1,7 @@
 package com.example.vue;
 import com.example.controleur.Controleur;
 import com.example.modele.DateCalendrier;
-import com.example.modele.Horaire;
+import com.example.modele.Reservation;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.geometry.HPos;
@@ -17,18 +17,20 @@ public class Formulaire extends GridPane {
     private ComboBox<Integer> minHeureDebut;
     private ComboBox<Integer> heureFin;
     private ComboBox<Integer> minHeureFin;
+    private Label lbMessageConfirmation;
+    private DateCalendrier selDateRecord;
 
 
     public Formulaire(Controleur controleur) {
         super();
-        DateCalendrier today = new DateCalendrier();
+        selDateRecord = new DateCalendrier();
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
         grid.setPadding(new Insets(10));
         grid.setHgap(10);
         grid.setVgap(10);
 
-        dateJour = new Label(today.toString());
+        dateJour = new Label(selDateRecord.toString());
 
         GridPane.setColumnSpan(dateJour, 6);
         GridPane.setHalignment(dateJour, HPos.CENTER);
@@ -141,6 +143,7 @@ public class Formulaire extends GridPane {
         grid.add(min2Label, 5, 5);
 
         Button annulerButton = new Button("A_nnuler");
+        annulerButton.setId("annuler");
         grid.add(annulerButton, 0, 6);
         annulerButton.setMnemonicParsing(true);
         GridPane.setColumnSpan(annulerButton, 4);
@@ -149,11 +152,18 @@ public class Formulaire extends GridPane {
 
 
         Button enregistrerButton = new Button("En_registrer");
+        enregistrerButton.setId("enregistrer");
         enregistrerButton.addEventHandler(ActionEvent.ACTION, controleur);
         grid.add(enregistrerButton, 5, 6);
         enregistrerButton.setMnemonicParsing(true);
         GridPane.setHalignment(enregistrerButton, HPos.RIGHT);
 
+
+        lbMessageConfirmation = new Label("");
+        GridPane.setHalignment(lbMessageConfirmation, HPos.CENTER);
+        GridPane.setColumnSpan(lbMessageConfirmation, 8);
+        lbMessageConfirmation.setId("sMessageConfirmation");
+        grid.add(lbMessageConfirmation, 0,10);
 
 
         // Ajout final
@@ -161,7 +171,12 @@ public class Formulaire extends GridPane {
     }
 
     public void updateDateSel(DateCalendrier selDate) {
+        selDateRecord = selDate;
         dateJour.setText(selDate.toString());
+    }
+
+    public DateCalendrier getDateRecord() {
+        return selDateRecord;
     }
 
     public String getTextFieldCours() {
@@ -182,5 +197,9 @@ public class Formulaire extends GridPane {
 
     public Integer getMinHeureFin(){
         return minHeureFin.getValue();
+    }
+
+    public void updateMessageConfirmation(String sMessage) {
+        lbMessageConfirmation.setText(sMessage);
     }
 }

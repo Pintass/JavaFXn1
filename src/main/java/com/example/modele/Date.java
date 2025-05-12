@@ -3,7 +3,7 @@ package com.example.modele;
 import java.io.Serializable;
 import java.util.Calendar;
 
-public class Date implements Serializable {
+public class Date implements Comparable <Date> {
     protected int chJour;
     protected int chMois;
     protected int chAnnee;
@@ -66,6 +66,7 @@ public class Date implements Serializable {
      retroune un entier négatif si this est antérieure à parDate
      retourne un entier positif si this es postérieure à parDate
      */
+    @Override
     public int compareTo (Date parDate) {
         if (chAnnee < parDate.chAnnee)
             return -8;

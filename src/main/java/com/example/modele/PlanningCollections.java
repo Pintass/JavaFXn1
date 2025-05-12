@@ -1,87 +1,104 @@
 package com.example.modele;
 
-import com.sun.source.tree.Tree;
-
 import java.util.*;
 
 public class PlanningCollections {
-    private List<Reservation> chListe;
-    private Set<Reservation> chSet;
-    private TreeMap<Integer, Set<Reservation>> chSetWeek;
+    private List <Reservation> chListReservations;
+    private Set <Reservation> chSetReservations;
+    private Map <Integer, Set<Reservation>> chMapReservations;
+    public PlanningCollections(){
+        chListReservations = new ArrayList<Reservation>();
+        chSetReservations = new TreeSet<Reservation>();
+        chMapReservations = new TreeMap<Integer, Set<Reservation>>();
+    }
 
-    public PlanningCollections() {
-        chListe = new ArrayList <Reservation> ();
-        chSet = new TreeSet <Reservation>();
-        chSetWeek = new TreeMap<Integer, Set<Reservation>>();
+    /**
+     * ajout de parReservation (classe Reservation) à la liste des réservations et au set des réservations
+     *
+     * @param parReservation
+     * @throws ExceptionPlanning
+     *
+     * leve ExcpetionPlanning quand parReservation n'est pas compatible avec une reservation de planning
+     */
+
+    public void ajout (Reservation parReservation) throws ExceptionPlanning{
+        // ajout à la liste
+        // parcours avec itérateur
+        Iterator<Reservation> iterateur = chListReservations.iterator();
+        while (iterateur.hasNext()){
+            Reservation reserve = iterateur.next();
+            if (parReservation.compareTo(reserve) == 0)
+                throw new ExceptionPlanning(2);
+        }
+        chListReservations.add(parReservation);
+        // ajout au set
+        int sizeInitial = chSetReservations.size();
+        chSetReservations.add(parReservation);
+        if (sizeInitial == chSetReservations.size())
+            throw new ExceptionPlanning(2);
+        chSetReservations.add(parReservation);
+        // ajout au map
+        int numSemaine = ((DateCalendrier) parReservation.getDate()).getWeekOfYear();
+        Set<Reservation> set = chMapReservations.get(numSemaine);
+        if(set == null){
+            set = new TreeSet<>();
+            set.add(parReservation);
+            chMapReservations.put(numSemaine, set);
+        }
+        else{
+            int nbre = set.size();
+            set.add(parReservation);
+            if (nbre==set.size()){
+                throw new ExceptionPlanning(1);
+            }
+        }
+    }
+
+    /**
+     * Retourne l'ensemble des réservations du planning contenant la date passé en paramètre.
+     *
+     * @param parDate
+     * @return TreeSet <Reservation>
+     */
+    public TreeSet <Reservation> getReservations (DateCalendrier parDate){
+        TreeSet <Reservation> setReservationsJour = new TreeSet<Reservation>();
+        Iterator <Reservation> iterateur = chSetReservations.iterator();
+        while (iterateur.hasNext()){
+            Reservation resJour = iterateur.next();
+            if (resJour.getDate().compareTo(parDate) == 0){
+                setReservationsJour.add(resJour);
+            }
+        }
+        if (setReservationsJour.isEmpty()){
+            return null;
+        }
+        return setReservationsJour;
+    }
+    /**
+     * Retourne l'ensemble des réservations du planning contenant l'intitulé passé en paramètre.
+     *
+     * @param parString
+     * @return TreeSet <Reservation>
+     */
+    public TreeSet <Reservation> getReservations (String parString){
+        TreeSet <Reservation> setReservationsString = new TreeSet<Reservation>();
+        Iterator <Reservation> iterateur = chSetReservations.iterator();
+        while (iterateur.hasNext()){
+            Reservation resString = iterateur.next();
+            if (resString.getIntitule().toLowerCase().contains(parString.toLowerCase())){
+                setReservationsString.add(resString);
+            }
+        }
+        if (setReservationsString.isEmpty()){
+            return null;
+        }
+        return setReservationsString;
     }
 
     public String toString(){
-        return "ArrayList, taille : " + chListe.size() + " - " + chListe + "\n" + "TreeSet, taille : " + chSet.size() + " - " + chSet + "\n"
-        + "TreeMap, taille : " + chSetWeek.size() + " - " + chSetWeek + "\n" ;
+        return "treeSet" + chSetReservations.size() + "-" + chSetReservations + "\n"
+                + "arrayList" + chListReservations.size() + "-" + chListReservations + "\n"
+                + "treeMap" + chMapReservations.size() + "-" + chMapReservations + "\n";
     }
-
-    public void ajout(Reservation parReservation) throws ExceptionPlanning {
-        // ArrayList
-        Iterator<Reservation> iterateurListe = chListe.iterator();
-        while (iterateurListe.hasNext()) {
-            Reservation reserve = iterateurListe.next();
-            if (parReservation.compareTo(reserve) == 0) throw new ExceptionPlanning(2);
-        }
-        chListe.add(parReservation);
-
-        // TreeSet
-
-        int sizeInitial = chSet.size();
-        chSet.add(parReservation);
-        if(sizeInitial == chSet.size()) throw new ExceptionPlanning(2);
-
-
-    }
-
-    /** getReservation permet de reçevoir toutes les réservations par rapport à une date donnée
-    @params
-    - DateCalendrier parDate
-    @returns<
-    - TreeSet <Reservation>
-     */
-    public TreeSet <Reservation> getReservations(DateCalendrier parDate) {
-        TreeSet <Reservation> Setfinal = new TreeSet<Reservation>();
-        Iterator<Reservation> iterateurD = chSet.iterator();
-
-        while(iterateurD.hasNext()) {
-            Reservation reserve = iterateurD.next();
-            if (reserve.getDate() == parDate) {
-                Setfinal.add(reserve);
-            }
-        }
-        return Setfinal;
-    }
-
-
-    /** getReservation permet de reçevoir toutes les réservations par rapport à un intitulé donné
-   @params
-   - String parString
-   @returns
-   - TreeSet <Reservation>
-    */
-    public TreeSet <Reservation> getReservations(String parString) {
-        TreeSet <Reservation> Setfinal = new TreeSet <Reservation>();
-        Iterator<Reservation> iterateurD = chSet.iterator();
-
-        while(iterateurD.hasNext()) {
-            Reservation reserve = iterateurD.next();
-            if (reserve.getIntitule().toLowerCase().contains(parString.toLowerCase())) { // contains permet de prendre tout ce qui contient parString
-                // toLowerCase() permet de ne pas prendre en compte la casse !
-                Setfinal.add(reserve);
-            }
-        }
-        return Setfinal;
-    }
-    
-
-
-
 
 }
-
-

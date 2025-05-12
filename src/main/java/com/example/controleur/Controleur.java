@@ -13,11 +13,13 @@ public class Controleur implements EventHandler {
     public void handle(Event event) {
         PlanningCollections planning = HBoxRoot.getPlanning();
         Formulaire reservationPane = HBoxRoot.getFormulairePane();
+        DateCalendrier selDate = new DateCalendrier();
+
 
         // la source de event est un ToggleButton du calendrier
         if (event.getSource() instanceof ToggleButton) {
             ToggleButton clickedButton = (ToggleButton)event.getSource();
-            DateCalendrier selDate = (DateCalendrier)clickedButton.getUserData();
+            selDate = (DateCalendrier)clickedButton.getUserData();
 
             reservationPane.updateDateSel(selDate);
         }
@@ -35,11 +37,20 @@ public class Controleur implements EventHandler {
             // On crée les horaires désormais :
             Horaire hHoraireDebut = new Horaire(iHeureDebut, iMinDebut);
             Horaire hHoraireFin = new Horaire(iHeureFin, iMinFin);
+            System.out.println(hHoraireDebut + " " + hHoraireFin);
+
             // Puis la plage horaire de la réservation, on mets un try catch car il peut y avoir une réservation
             try {
+                System.out.println("date " + reservationPane.getDateRecord());
                 PlageHoraire phPlageHoraireReservation = new PlageHoraire(hHoraireDebut, hHoraireFin);
+                Reservation rReservation = new Reservation(reservationPane.getDateRecord(), phPlageHoraireReservation, sCours);
+                System.out.println(rReservation);
+                planning.ajout(rReservation);
+
+                System.out.println(planning);
+                reservationPane.updateMessageConfirmation("Réservation confirmée et ajoutée !");
             } catch (ExceptionPlanning e) {
-                throw new RuntimeException(e);
+                reservationPane.updateMessageConfirmation("Erreur, veuillez effectuer une réservation possible");
             }
 
 
