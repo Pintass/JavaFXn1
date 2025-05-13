@@ -92,6 +92,7 @@
     -fx-font-weight: bold;
     -fx-background-radius: 6;
     -fx-pref-width: 100px;
+
 }
 
 .button#enregistrer {
@@ -143,4 +144,9 @@
 .combo-box:focused {
     -fx-effect: dropshadow( gaussian , #7ccbf1, 10, 0.01,0,0 );
 }
+
+
+
+
+
 

@@ -22,7 +22,8 @@ public class Controleur implements EventHandler {
         if (event.getSource() instanceof ToggleButton) {
             ToggleButton clickedButton = (ToggleButton)event.getSource();
             selDate = (DateCalendrier)clickedButton.getUserData();
-            tableViewPlanning.updateNumSemaine("Semaine :" + selDate.getWeekOfYear());
+            tableViewPlanning.updateNumSemaine("Semaine " + selDate.getWeekOfYear());
+            tableViewPlanning.updatePlanning(selDate.getWeekOfYear());
             reservationPane.updateDateSel(selDate);
         }
 
@@ -46,8 +47,11 @@ public class Controleur implements EventHandler {
                 PlageHoraire phPlageHoraireReservation = new PlageHoraire(hHoraireDebut, hHoraireFin);
                 Reservation rReservation = new Reservation(reservationPane.getDateRecord(), phPlageHoraireReservation, sCours);
                 planning.ajout(rReservation);
+                System.out.println(rReservation);
+                System.out.println(planning);
                 // on envoie à la vue tableview le n° de la semaine
                 tableViewPlanning.updateNumSemaine("Semaine :" + reservationPane.getDateRecord().getWeekOfYear());
+                tableViewPlanning.updatePlanning(reservationPane.getDateRecord().getWeekOfYear());
                 reservationPane.updateMessageConfirmation("Réservation confirmée et ajoutée !");
             } catch (ExceptionPlanning e) {
                 reservationPane.updateMessageConfirmation("Erreur, veuillez effectuer une réservation possible");

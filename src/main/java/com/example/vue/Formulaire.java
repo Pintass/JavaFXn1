@@ -9,6 +9,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 
 public class Formulaire extends GridPane {
     private Label dateJour;
@@ -60,12 +61,13 @@ public class Formulaire extends GridPane {
 
         ToggleGroup tgroup = new ToggleGroup();
 
+
+
         RadioButton debutantButton = new RadioButton("_débutant");
         debutantButton.setSelected(true);
         debutantButton.setMnemonicParsing(true);
         debutantButton.setAccessibleText("débutant");
         grid.add(debutantButton, 2, 2);
-
 
         RadioButton moyenButton = new RadioButton("_moyen");
         moyenButton.setMnemonicParsing(true);
@@ -142,21 +144,22 @@ public class Formulaire extends GridPane {
         Label min2Label = new Label("min");
         grid.add(min2Label, 5, 5);
 
+        HBox h = new HBox();
         Button annulerButton = new Button("A_nnuler");
         annulerButton.setId("annuler");
-        grid.add(annulerButton, 0, 6);
+        h.getChildren().add(annulerButton);
         annulerButton.setMnemonicParsing(true);
-        GridPane.setColumnSpan(annulerButton, 4);
-        GridPane.setHalignment(annulerButton, HPos.RIGHT);
-
-
 
         Button enregistrerButton = new Button("En_registrer");
         enregistrerButton.setId("enregistrer");
         enregistrerButton.addEventHandler(ActionEvent.ACTION, controleur);
-        grid.add(enregistrerButton, 5, 6);
+        h.getChildren().add(enregistrerButton);
         enregistrerButton.setMnemonicParsing(true);
-        GridPane.setHalignment(enregistrerButton, HPos.RIGHT);
+
+        GridPane.setColumnSpan(h, 8);
+        h.setAlignment(Pos.CENTER_RIGHT);
+        grid.add(h, 0, 6);
+        h.setSpacing(10);
 
 
         lbMessageConfirmation = new Label("");

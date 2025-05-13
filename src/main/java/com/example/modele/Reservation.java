@@ -30,6 +30,10 @@ public class Reservation implements Comparable<Reservation>{
 
     public String getIntitule(){ return chIntituleReservation; }
 
+    public PlageHoraire getHoraire(){
+        return plageHoraireReservation;
+    }
+
     public boolean estValide(){
         return dateReservation.estValide() && plageHoraireReservation.estValide() && chIntituleReservation != null && chIntituleReservation.length() != 0;
 

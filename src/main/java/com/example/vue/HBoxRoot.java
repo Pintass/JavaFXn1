@@ -1,6 +1,7 @@
 package com.example.vue;
 
 import com.example.controleur.Controleur;
+import com.example.modele.ExceptionPlanning;
 import com.example.modele.PlanningCollections;
 import javafx.scene.layout.HBox;
 
@@ -13,7 +14,7 @@ public class HBoxRoot extends HBox {
     private static Formulaire formulairePane;
     private static TableViewPlanning tableViewPlanning;
 
-    public HBoxRoot() {
+    public HBoxRoot() throws ExceptionPlanning {
         super(20);
         planning = new PlanningCollections();
         controleur = new Controleur();

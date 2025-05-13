@@ -1,5 +1,7 @@
 package com.example.modele;
 
+import javafx.scene.control.Label;
+
 import java.util.*;
 
 public class PlanningCollections {
@@ -74,13 +76,8 @@ public class PlanningCollections {
         }
         return setReservationsJour;
     }
-    /**
-     * Retourne l'ensemble des réservations du planning contenant l'intitulé passé en paramètre.
-     *
-     * @param parString
-     * @return TreeSet <Reservation>
-     */
-    public TreeSet <Reservation> getReservations (String parString){
+
+    /*public TreeSet <Reservation> getReservations (String parString){
         TreeSet <Reservation> setReservationsString = new TreeSet<Reservation>();
         Iterator <Reservation> iterateur = chSetReservations.iterator();
         while (iterateur.hasNext()){
@@ -93,12 +90,16 @@ public class PlanningCollections {
             return null;
         }
         return setReservationsString;
-    }
+    }*/
 
     public String toString(){
         return "treeSet" + chSetReservations.size() + "-" + chSetReservations + "\n"
                 + "arrayList" + chListReservations.size() + "-" + chListReservations + "\n"
                 + "treeMap" + chMapReservations.size() + "-" + chMapReservations + "\n";
+    }
+
+    public Map<Integer, Set<Reservation>> getReservations() {
+        return chMapReservations;
     }
 
 }
