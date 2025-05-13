@@ -126,7 +126,7 @@ public class Formulaire extends GridPane {
         for(int i = 0; i < 24; i++) {
             heureFin.getItems().addAll(i);
         }
-        heureFin.setValue(19);
+        heureFin.setValue(10);
         grid.add(heureFin, 2, 5);
 
         Label h2Label = new Label("h");

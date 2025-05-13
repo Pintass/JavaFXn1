@@ -19,6 +19,7 @@ import javafx.scene.layout.VBox;
 import java.util.List;
 
 public class GridPane extends VBox implements ConstantesCalendrier {
+    private Label labelMois;
     public GridPane(Controleur controleur) {
         super();
         DateCalendrier today = new DateCalendrier();
@@ -77,7 +78,10 @@ public class GridPane extends VBox implements ConstantesCalendrier {
             tilePane.setAccessibleText(MOIS[i-1]);
             stackPaneMois.getChildren().add(tilePane);
 
-            Label labelMois = new Label(MOIS[i-1]);
+            labelMois = new Label(MOIS_ABR[i-1]);
+            labelMois.setId("MoisCourant");
+            tilePane.getChildren().add(labelMois);
+
 
         }
 

@@ -3,6 +3,7 @@ package com.example.controleur;
 import com.example.modele.*;
 import com.example.vue.Formulaire;
 import com.example.vue.HBoxRoot;
+import com.example.vue.TableViewPlanning;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -14,13 +15,14 @@ public class Controleur implements EventHandler {
         PlanningCollections planning = HBoxRoot.getPlanning();
         Formulaire reservationPane = HBoxRoot.getFormulairePane();
         DateCalendrier selDate = new DateCalendrier();
+        TableViewPlanning tableViewPlanning = HBoxRoot.getTableViewPlanning();
 
 
         // la source de event est un ToggleButton du calendrier
         if (event.getSource() instanceof ToggleButton) {
             ToggleButton clickedButton = (ToggleButton)event.getSource();
             selDate = (DateCalendrier)clickedButton.getUserData();
-
+            tableViewPlanning.updateNumSemaine("Semaine :" + selDate.getWeekOfYear());
             reservationPane.updateDateSel(selDate);
         }
 
@@ -41,13 +43,11 @@ public class Controleur implements EventHandler {
 
             // Puis la plage horaire de la réservation, on mets un try catch car il peut y avoir une réservation
             try {
-                System.out.println("date " + reservationPane.getDateRecord());
                 PlageHoraire phPlageHoraireReservation = new PlageHoraire(hHoraireDebut, hHoraireFin);
                 Reservation rReservation = new Reservation(reservationPane.getDateRecord(), phPlageHoraireReservation, sCours);
-                System.out.println(rReservation);
                 planning.ajout(rReservation);
-
-                System.out.println(planning);
+                // on envoie à la vue tableview le n° de la semaine
+                tableViewPlanning.updateNumSemaine("Semaine :" + reservationPane.getDateRecord().getWeekOfYear());
                 reservationPane.updateMessageConfirmation("Réservation confirmée et ajoutée !");
             } catch (ExceptionPlanning e) {
                 reservationPane.updateMessageConfirmation("Erreur, veuillez effectuer une réservation possible");

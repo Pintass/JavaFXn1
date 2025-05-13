@@ -4,11 +4,14 @@ import com.example.controleur.Controleur;
 import com.example.modele.PlanningCollections;
 import javafx.scene.layout.HBox;
 
+import javax.swing.text.TableView;
+
 public class HBoxRoot extends HBox {
     private static PlanningCollections planning;
     private static Controleur controleur;
     private static GridPane calendrierPane;
     private static Formulaire formulairePane;
+    private static TableViewPlanning tableViewPlanning;
 
     public HBoxRoot() {
         super(20);
@@ -16,8 +19,10 @@ public class HBoxRoot extends HBox {
         controleur = new Controleur();
         calendrierPane = new GridPane(controleur);
         formulairePane = new Formulaire(controleur);
+        tableViewPlanning = new TableViewPlanning(controleur);
         this.getChildren().add(calendrierPane);
         this.getChildren().add(formulairePane);
+        this.getChildren().add(tableViewPlanning);
 
     }
 
@@ -37,4 +42,7 @@ public class HBoxRoot extends HBox {
         return formulairePane;
     }
 
+    public static TableViewPlanning getTableViewPlanning() {
+        return tableViewPlanning;
+    }
 }

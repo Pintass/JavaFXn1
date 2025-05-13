@@ -67,9 +67,7 @@
 
 .grid-pane {
     -fx-background-color: white;
-    -fx-padding: 30;
-    -fx-hgap: 15;
-    -fx-vgap: 15;
+    -fx-padding: 10;
     -fx-font-size: 14px;
 }
 
@@ -105,12 +103,13 @@
 }
 
 .button#enregistrer:hover {
-    -fx-background-color: #218838;
-    -fx-effect: dropshadow( gaussian , #2cff00, 20, 0.01,0,0 );
+    -fx-background-color: #37b553;
+    -fx-effect: dropshadow( gaussian , #2cff00, 8, 0.01,0,0 );
 }
 
 .button#annuler:hover {
-    -fx-background-color: #ced4da;
+    -fx-background-color: #b52525;
+    -fx-effect: dropshadow( gaussian , #cd0000, 8, 0.01,0,0 );
 }
 
 /* Radio buttons */
@@ -136,3 +135,12 @@
     -fx-font-weight: 800;
     -fx-font-size: 24px;
 }
+
+.text-field:focused {
+    -fx-effect: dropshadow( gaussian , #7ccbf1, 10, 0.01,0,0 );
+}
+
+.combo-box:focused {
+    -fx-effect: dropshadow( gaussian , #7ccbf1, 10, 0.01,0,0 );
+}
+
